@@ -14,3 +14,15 @@ helper :linode do
     Linode.new(:api_key => Clinode.options[:api_token])
   end
 end
+
+helper :get_linode do
+
+  linode_config
+  ls = stackscript_linode
+  if ls
+    return ls
+  else
+    die "wtf"
+  end
+
+end
