@@ -19,7 +19,8 @@ helper :stackscript_list do |ls|
 end
 
 helper :stackscript_meta_update do |ls,stackscript_id,opts|
-  params = opts
+  VALID_KEYS = [:label,:ispublic,:rev_note,:description]
+  params = opts.reject{|key,value| !VALID_KEYS.include?(key)}
   params[:stackscriptid] = stackscript_id
   ls.update(params)
 end
@@ -57,8 +58,13 @@ end
 
 desc "List your stackscripts"
 usage "--dir=<directory> stackscript directory to upload from/download to"
+usage "--label=<new label>"
+usage "--ispublic=true/false"
+usage "--description=<stackscript update>"
+usage "--rev_note=<revision note>"
 flags :output => "Output the content of the stackscript only"
 flags :update => "Update the content of the stackscript"
+flags :meta_update => "Update the meta data of the stackscript"
 command :stackscript do |arg|
   helper.linode_config
   ls = helper.stackscript_linode
@@ -77,6 +83,8 @@ command :stackscript do |arg|
     if options[:update]
       filename = "#{options[:dir]}/#{arg}_stack.sh"
       helper.stackscript_update(ls,arg,filename)
+    elsif options[:meta_update]
+      helper.stackscript_meta_update(ls,arg,options)
     else
       helper.stackscript_process(ls,arg)
     end
