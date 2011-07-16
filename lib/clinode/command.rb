@@ -33,18 +33,6 @@ module Clinode
       Clinode.options
     end
 
-    def pgit(*command)
-      puts git(*command)
-    end
-
-    def git(command)
-      run :sh, command
-    end
-
-    def git_exec(command)
-      run :exec, command
-    end
-
     def run(method, command)
       if command.is_a? Array
         command = [ 'git', command ].flatten

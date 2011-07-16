@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'linode'
 
+$:.unshift File.dirname(__FILE__)
 require 'clinode/extensions'
 require 'clinode/command'
 require 'clinode/helper'
@@ -117,7 +118,7 @@ module Clinode
 
   def find_command(name)
     name = name.to_s
-    commands[name] || (commands[name] = GitCommand.new(name)) || commands['default']
+    commands[name] || (commands[name] = Command.new(name)) || commands['default']
   end
 
   def commands
