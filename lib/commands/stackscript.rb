@@ -80,9 +80,7 @@ flags :update => "Update the content of the stackscript"
 flags :meta_update => "Update the meta data of the stackscript"
 flags :delete => "Delete the given stack script"
 command :stackscript do |arg|
-  helper.linode_config
-  ls = helper.stackscript_linode
-  return if !ls
+  ls = helper.get_linode
 
   options[:dir] ||= "."
 

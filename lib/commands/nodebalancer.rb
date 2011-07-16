@@ -1,7 +1,5 @@
 command :nodebalancer do |args|
-  helper.linode_config
-  ls = helper.stackscript_linode
-  return if !ls
+  ls = helper.get_linode
 
   case args
   when "list"

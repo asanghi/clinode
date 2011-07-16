@@ -1,7 +1,5 @@
 command :echo do
-  helper.linode_config
-  ls = helper.stackscript_linode
-  return if !ls
+  ls = helper.get_linode
 
   puts ls.test.echo(options)
 end

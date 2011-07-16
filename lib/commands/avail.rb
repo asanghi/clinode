@@ -1,7 +1,5 @@
 command :avail do |args|
-  helper.linode_config
-  ls = helper.linode
-  return if !ls
+  ls = helper.get_linode
 
   params = {}
 

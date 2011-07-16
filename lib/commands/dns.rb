@@ -1,7 +1,5 @@
 command :dns do |args|
-  helper.linode_config
-  ls = helper.stackscript_linode
-  return if !ls
+  ls = helper.get_linode
 
   params = {}
 
@@ -16,9 +14,7 @@ command :dns do |args|
 end
 
 command :dns_resource do |args|
-  helper.linode_config
-  ls = helper.stackscript_linode
-  return if !ls
+  ls = helper.get_linode
 
   return if !options.has_key?(:domainid)
 
