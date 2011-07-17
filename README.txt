@@ -21,3 +21,5 @@ linode stackscript download [--dir=<dir>]
 linode stackscript upload [-dir=<dir>]
   - Uploads all files in the format <stackscript_id>.stack.sh in the current directory or a directory of your choosing onto linode.
 
+Note: I'm still trying to find the best and cleanest way to implement it. All a spike so far.
+If you use it, best to read the code to figure this out and fork and pull.

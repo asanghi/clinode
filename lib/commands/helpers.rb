@@ -17,12 +17,6 @@ end
 
 helper :get_linode do
 
-  linode_config
-  ls = stackscript_linode
-  if ls
-    return ls
-  else
-    die "wtf"
-  end
+  linode or die "wtf"
 
 end

@@ -1,8 +1,3 @@
-# This shouldnt be required if we get the patch into rick's linode api gem
-helper :stackscript_linode do
-  Linode::Stackscript.new(:api_key => Clinode.options[:api_token])
-end
-
 helper :print_stackscript do |script|
   if Clinode.options[:output]
     puts script.script
