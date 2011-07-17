@@ -8,7 +8,7 @@ end
 
 helper :stackscript_list do |ls|
   Clinode.debug "listing"
-  ls.list.each do |stackscript|
+  ls.stackscript.list.each do |stackscript|
     print_stackscript(stackscript)
   end
 end
@@ -17,25 +17,25 @@ helper :stackscript_meta_update do |ls,stackscript_id,opts|
   VALID_KEYS = [:label,:ispublic,:rev_note,:description]
   params = opts.reject{|key,value| !VALID_KEYS.include?(key)}
   params[:stackscriptid] = stackscript_id
-  ls.update(params)
+  ls.stackscript.update(params)
 end
 
 helper :stackscript_create do |ls,opts|
   VALID_KEYS = [:label,:ispublic,:rev_note,:description]
   params = opts.reject{|key,value| !VALID_KEYS.include?(key)}
   params[:script] = File.read(Clinode.options[:file])
-  ls.create(params)
+  ls.stackscript.create(params)
 end
 
 helper :stackscript_delete do |ls,stackscript_id|
-  ls.delete(:stackscriptid => stackscript_id)
+  ls.stackscript.delete(:stackscriptid => stackscript_id)
   puts "Stack Script #{stackscript_id} deleted."
 end
 
 helper :stackscript_update do |ls,stackscript_id,filename|
   if File.exists?(filename)
     script = File.read(filename)
-    ls.update(:stackscriptid => stackscript_id,:script => script)
+    ls.stackscript.update(:stackscriptid => stackscript_id,:script => script)
     puts "Stack Script #{stackscript_id} uploaded."
   end
 end
@@ -50,7 +50,7 @@ helper :stackscript_upload do |ls|
 end
 
 helper :stackscript_download do |ls|
-  ls.list.each do |stackscript|
+  ls.stackscript.list.each do |stackscript|
     filename = "#{Clinode.options[:dir]}/#{stackscript.stackscriptid}_stack.sh"
     File.open(filename,"w+"){|f|f.write(stackscript.script)}
     Clinode.debug "Writing Script #{stackscript.stackscriptid} #{stackscript.label} into #{filename}"
@@ -59,7 +59,7 @@ end
 
 helper :stackscript_process do |ls,stackscript_id|
   Clinode.debug "Fetching StackScript #{stackscript_id}"
-  stackscript = ls.list(:stackscript => stackscript_id)
+  stackscript = ls.stackscript.list(:stackscript => stackscript_id)
   print_stackscript(stackscript[0])
 end
 
