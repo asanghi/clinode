@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Aditya Sanghi"]
   s.email       = ["asanghi@me.com"]
-  s.homepage    = "http://me.adityasanghi.com"
+  s.homepage    = "http://adityasanghi.com"
   s.summary     = %q{Command Line Control over your Linodes}
   s.description = %q{Extensive control of your linode(s) using a fully featured command line tool}
 
